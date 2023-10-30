@@ -13,7 +13,10 @@ class Field {
 const myField = new Field([
     ['░', '░', 'O', '░'],
     ['*', 'O', '░', 'O'],
-    ['░', '^', '░', '░'],
+    ['░', 'O', '░', '^'],
+    ['░', '░', 'O', '░'],
+    ['░', 'O', '░', '░'],
+    ['░', '░', '░', '░'],
   ]);
 
 const prompt = require('prompt-sync')({sigint: true});
