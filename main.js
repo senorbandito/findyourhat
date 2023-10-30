@@ -8,6 +8,11 @@ class Field {
       console.log(element.join(' ') + '\n');
     }
   }  
+
+  gameStatus(msg) {
+    console.log(msg);
+    process.exit();
+  }
 }
 
 const myField = new Field([
@@ -47,15 +52,9 @@ while (gameActive) {
       break;
     case 'q':    
       position[1] = position[1] + 1;
-      console.log('Goodbye!');
-      process.exit();
+      myField.gameStatus('Goodbye!');
   }
  
-  if (!(position[0] in myField._field) || !(position[1] in myField._field[0])) {
-    console.log('Out of bounds. You lose!\n');
-    process.exit();
-  }   
-
   // Validate new position
   const newPosition = myField._field[position[0]][position[1]];
 
@@ -64,11 +63,14 @@ while (gameActive) {
       myField._field[position[0]][position[1]] = '*';
       break;
     case 'O':
-      console.log('Sorry, you fell down a hole. You lose!\n');
-      process.exit();
+      myField.gameStatus('Sorry, you fell down a hole. You lose!\n')
     case '^':
-      console.log('You found your hat. Congrats!\n');
-      process.exit();   
+      myField.gameStatus('You found your hat. Congrats!\n') 
+    default:
+      if (!(position[0] in myField._field) || !(position[1] in myField._field[0])) {
+        myField.gameStatus('Out of bounds. You lose!\n')
+      } 
+      break;    
   }    
 
   // Clear screen
